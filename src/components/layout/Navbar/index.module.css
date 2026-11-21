@@ -31,7 +31,7 @@
 .logoContainer {
   display: inline-flex;
   align-items: center;
-  width: max-content;
+  min-width: 0;
   text-decoration: none;
 }
 
@@ -45,50 +45,57 @@
 .actions {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 0;
+  gap: clamp(6px, 1vw, 14px);
 }
 
-.contactBtn {
-  min-width: max-content;
-  min-height: 44px;
-  padding: 0 clamp(24px, 1.45vw, 30px) !important;
-  font-family: var(--font-satoshi), Arial, Helvetica, sans-serif !important;
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  letter-spacing: 0 !important;
-  text-transform: uppercase !important;
-  border: 0 !important;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22), inset 0 -2px 0 rgba(0, 0, 0, 0.08);
-}
-
-.arrowBtn {
-  width: 44px;
-  height: 44px;
-  flex: 0 0 44px;
-  border-radius: 50%;
+.action {
+  --action-size: 44px;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  color: #111111;
-  background-color: #ffffff;
-  border: 0;
+  border-radius: 999px;
+  color: #111;
+  font-family: var(--font-satoshi);
+  font-size: clamp(12px, 1.16vw, 16px);
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.actionLabel,
+.actionIcon {
+  display: grid;
+  place-items: center;
+  height: var(--action-size);
+  border-radius: inherit;
+  background-color: #fff;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22), inset 0 -2px 0 rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
-.contactBtn:hover,
-.arrowBtn:hover {
-  background-color: rgba(255, 255, 255, 0.92);
+.actionLabel {
+  padding-inline: clamp(14px, 1.45vw, 28px);
 }
 
-.arrowBtn svg {
-  transition: transform 0.2s ease;
+.actionIcon {
+  width: var(--action-size);
 }
 
-.arrowBtn:hover svg {
-  transform: rotate(8deg) scale(1.05);
+.action:hover > span {
+  background-color: #ebebeb;
+}
+
+.outlineAction {
+  color: #fff;
+}
+
+.outlineAction > span {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+
+.outlineAction:hover > span {
+  background-color: rgb(255 255 255 / 12%);
 }
 
 .logo {
@@ -99,82 +106,21 @@
   transform: scale(1.03);
 }
 
-@media (max-width: 1320px) {
-  .navbarInner {
-    max-width: 1280px;
-    gap: 18px;
-  }
-
-  .logo {
-    width: 240px;
-  }
-
-  .contactBtn {
-    min-height: 44px;
-    padding: 0 18px !important;
-    font-size: 16px !important;
-  }
-
-  .arrowBtn {
-    width: 44px;
-    height: 44px;
-    flex-basis: 44px;
-  }
-}
-
-@media (max-width: 1200px) {
+@media (max-width: 992px) {
   .header {
-    padding: 0 28px;
-  }
-
-  .navbarInner {
-    max-width: 1100px;
-    gap: 14px;
+    height: 78px;
+    padding-inline: 28px;
   }
 
   .logo {
     width: 220px;
   }
-
-  .contactBtn,
-  .arrowBtn {
-    min-height: 42px;
-    height: 42px;
-  }
-
-  .contactBtn {
-    padding: 0 18px !important;
-    font-size: 14px !important;
-  }
-
-  .arrowBtn {
-    width: 42px;
-    flex-basis: 42px;
-  }
-}
-
-@media (max-width: 992px) {
-  .header {
-    height: 78px;
-    padding: 0 28px;
-  }
-
-  .navbarInner {
-    display: flex;
-    justify-content: space-between;
-    column-gap: 16px;
-  }
-
-  .logo {
-    width: 240px;
-  }
-
 }
 
 @media (max-width: 768px) {
   .header {
-    padding: 0 20px;
     height: 70px;
+    padding-inline: 20px;
   }
 
   .logo {
@@ -183,10 +129,28 @@
 }
 
 @media (max-width: 576px) {
-  .header { padding-inline: 14px; }
-  .navbarInner { gap: 8px; }
-  .logo { width: min(42vw, 185px); }
-  .contactBtn { padding-inline: 12px !important; font-size: 12px !important; }
-  .arrowBtn { width: 38px; height: 38px; min-height: 38px; flex-basis: 38px; }
-  .arrowBtn svg { width: 19px; }
+  .header {
+    padding-inline: 12px;
+  }
+
+  .navbarInner {
+    gap: 8px;
+  }
+
+  .logo {
+    width: min(33vw, 165px);
+  }
+
+  .action {
+    --action-size: 40px;
+    font-size: 11px;
+  }
+
+  .actionLabel {
+    padding-inline: 10px;
+  }
+
+  .actionIcon {
+    display: none;
+  }
 }
