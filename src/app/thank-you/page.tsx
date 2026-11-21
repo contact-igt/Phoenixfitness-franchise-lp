@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight, Check } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
-import MarketingFooter from '@/components/sections/shared/MarketingFooter'
+import Footer from '@/components/layout/Footer'
 import Stagger from '@/components/animation/Stagger'
 import { DURATION, STAGGER } from '@/lib/animation/gsap'
 import styles from './page.module.css'
@@ -87,7 +87,7 @@ export default function ThankYouPage() {
           </Stagger>
         </section>
       </main>
-      <MarketingFooter />
+      <Footer />
     </>
   )
 }
